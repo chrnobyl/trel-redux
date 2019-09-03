@@ -1,11 +1,13 @@
 import React from 'react';
 import ListCard from './ListCard';
+import ActionButton from './ActionButton';
 
 const List = ({ title, cards }) => {
   return (
     <div style={styles.container}>
       <h4>{title}</h4>
-      { cards.map(card => <ListCard text={card.text} />) }
+      { cards.map(card => <ListCard key={card.id} text={card.text} />) }
+      <ActionButton />
     </div>
   )
 }
