@@ -14,6 +14,12 @@ class ActionButton extends Component {
     })
   }
 
+  closeForm = (e) => {
+    this.setState({
+      formOpen: false
+    })
+  }
+
   renderAddButton = () => {
     return (
       <div
@@ -25,6 +31,13 @@ class ActionButton extends Component {
     )
   }
 
+  handleInputChange = (e) => {
+    this.setState({
+      text: e.target.value
+    })
+
+  }
+
   renderForm = () => {
     const { list } = this.props;
 
@@ -34,7 +47,12 @@ class ActionButton extends Component {
 
     return <div>
       <Card>
-        <TextArea />
+        <TextArea
+          placeholder={placeholder}
+          autoFocus
+          onBlur={this.closeForm}
+          value={this.state.text}
+          onChange={this.handleInputChange}/>
       </Card>
     </div>
   }
