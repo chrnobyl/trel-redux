@@ -66,13 +66,12 @@ class App extends Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd} onDragStart={this.onDragStart}>
         <Confetti active={this.state.confetti} config={confettiConfig} />
-        <div className="App">
-          Hello!!!!!
-          <ListContainer>
+        <div style={{textAlign: "center"}}>
+          <h3 style={{color: "white"}}>To Do List</h3>
+          <ListContainer style={{display: "flex", justifyContent: "center"}}>
             {lists.map(list => <List listID={list.id} key={list.id} title={list.title} cards={list.cards} />)}
           </ListContainer>
         </div>
-        
       </DragDropContext>
     );
   }
