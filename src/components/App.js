@@ -1,18 +1,41 @@
 import React, { Component } from 'react';
 import List from './List';
 import { connect } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { sort } from '../actions';
 
 class App extends Component {
+
+  onDragEnd = (result) => {
+    const { destination, source, draggableID } = result;
+
+    if(!destination){
+      return;
+    }
+
+    this.props.dispatch(
+      sort(
+        source.droppableId,
+        destination.droppableId,
+        source.index,
+        destination.index,
+        draggableID
+      )
+    )
+
+  }
   render(){
     const { lists } = this.props;
 
     return (
-      <div className="App">
-        Hello!!!!!
-        <div style={styles.listsContainer}>
-          {lists.map(list => <List listID={list.id} key={list.id} title={list.title} cards={list.cards} />)}
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <div className="App">
+          Hello!!!!!
+          <div style={styles.listsContainer}>
+            {lists.map(list => <List listID={list.id} key={list.id} title={list.title} cards={list.cards} />)}
+          </div>
         </div>
-      </div>
+      </DragDropContext>
     );
   }
 }
