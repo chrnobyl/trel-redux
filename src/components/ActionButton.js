@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Icon from '@material-ui/core/Icon';
 import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button'
 import TextArea from 'react-textarea-autosize';
 
 class ActionButton extends Component {
   state = {
-    formOpen: false
+    formOpen: false,
+    text: ""
   }
 
   openForm = () => {
@@ -46,14 +48,38 @@ class ActionButton extends Component {
     const buttonTitle = "Add Card";
 
     return <div>
-      <Card>
+      <Card style={{
+        overflow: "visible",
+        minHeight: 80,
+        minWidth: 272,
+        padding: "6px 8px 2px"
+      }}>
         <TextArea
           placeholder={placeholder}
           autoFocus
           onBlur={this.closeForm}
           value={this.state.text}
-          onChange={this.handleInputChange}/>
+          onChange={this.handleInputChange}
+          style={{
+            resize: "none",
+            width: "100%",
+            outline: "none",
+            border: "none",
+            overflow: "hidden"
+          }}/>
       </Card>
+      <div style={styles.formButtonGroup}>
+        <Button variant="contained"
+          style={{ 
+            color: "white",
+            backgroundColor: "green"
+          }}>
+          {buttonTitle}{' '}
+        </Button>
+        <Icon style={{ marginLeft: 8, cursor: 'pointer' }}>
+          close
+        </Icon>
+      </div>
     </div>
   }
 
@@ -74,6 +100,11 @@ const styles = {
     height: 36,
     width: 272,
     paddingLeft: 10
+  },
+  formButtonGroup: {
+    marginTop: 8,
+    display: 'flex',
+    alignItems: 'center'
   }
 }
 
