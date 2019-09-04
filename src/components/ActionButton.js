@@ -5,6 +5,26 @@ import Button from '@material-ui/core/Button'
 import TextArea from 'react-textarea-autosize';
 import { connect } from 'react-redux';
 import { addCard } from '../actions';
+import styled from 'styled-components';
+
+const ActionButtonContainer = styled.div`
+  opacity: 0.5;
+  color: inherit;
+  background-color: inherit;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 3px;
+  height: 36px;
+  width: 272px;
+  padding-left: 10px;
+`
+
+const ButtonGroupContainer = styled.div`
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+`
 
 class ActionButton extends Component {
   state = {
@@ -38,12 +58,11 @@ class ActionButton extends Component {
 
   renderAddButton = () => {
     return (
-      <div
-        onClick={this.openForm}
-        style={styles.actionButton}>
+      <ActionButtonContainer
+        onClick={this.openForm}>
         <Icon>add</Icon>
         <p>Add another card</p>
-      </div>
+      </ActionButtonContainer>
     )
   }
 
@@ -82,7 +101,7 @@ class ActionButton extends Component {
             overflow: "hidden"
           }}/>
       </Card>
-      <div style={styles.formButtonGroup}>
+      <ButtonGroupContainer>
         <Button 
           onMouseDown={ this.handleAddCard }
           variant="contained"
@@ -95,32 +114,12 @@ class ActionButton extends Component {
         <Icon style={{ marginLeft: 8, cursor: 'pointer' }}>
           close
         </Icon>
-      </div>
+      </ButtonGroupContainer>
     </div>
   }
 
   render(){
     return this.state.formOpen ? this.renderForm() : this.renderAddButton();
-  }
-}
-
-const styles = {
-  actionButton: {
-    opacity: 0.5,
-    color: 'inherit',
-    backgroundColor: 'inherit',
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'pointer',
-    borderRadius: 3,
-    height: 36,
-    width: 272,
-    paddingLeft: 10
-  },
-  formButtonGroup: {
-    marginTop: 8,
-    display: 'flex',
-    alignItems: 'center'
   }
 }
 

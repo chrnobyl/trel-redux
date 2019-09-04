@@ -3,6 +3,12 @@ import List from './List';
 import { connect } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { sort } from '../actions';
+import styled from 'styled-components';
+
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 class App extends Component {
 
@@ -31,9 +37,9 @@ class App extends Component {
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="App">
           Hello!!!!!
-          <div style={styles.listsContainer}>
+          <ListContainer>
             {lists.map(list => <List listID={list.id} key={list.id} title={list.title} cards={list.cards} />)}
-          </div>
+          </ListContainer>
         </div>
       </DragDropContext>
     );
