@@ -1,6 +1,6 @@
 import { CONSTANTS } from '../actions';
 
-let cardID = 6;
+let cardID = 7;
 
 const initialState = [
   {
@@ -9,11 +9,19 @@ const initialState = [
     cards: [
       {
         id: `card-${0}`,
-        text: "example card"
+        text: "Make the fire"
       },
       {
         id: `card-${1}`,
-        text: "another example card"
+        text: "Fix the breakfast"
+      },
+      {
+        id: `card-${2}`,
+        text: "Wash the dishes"
+      },
+      {
+        id: `card-${3}`,
+        text: "Do the mopping"
       }
     ]
   },
@@ -22,17 +30,13 @@ const initialState = [
     id: `list-${1}`,
     cards: [
       {
-        id: `card-${2}`,
-        text: "example card"
-      },
-      {
-        id: `card-${3}`,
-        text: "another example card"
-      },
-      {
         id: `card-${4}`,
-        text: "yet another example card"
-      }
+        text: "Walk the dog"
+      },
+      {
+        id: `card-${5}`,
+        text: "Walk the cat"
+      },
     ]
   },
   {
@@ -40,17 +44,9 @@ const initialState = [
     id: `list-${2}`,
     cards: [
       {
-        id: `card-${5}`,
-        text: "example card"
-      },
-      {
         id: `card-${6}`,
-        text: "another example card"
+        text: "Finish take home project for Healthie"
       },
-      {
-        id: `card-${7}`,
-        text: "yet another example card"
-      }
     ]
   }
 ]
@@ -93,6 +89,16 @@ const listsReducer = (state = initialState, action) => {
         const list = state.find(list => droppableIdStart === list.id)
         const card = list.cards.splice(droppableIndexStart, 1)
         list.cards.splice(droppableIndexEnd, 0, ...card)
+      }
+
+      if(droppableIdStart !== droppableIdEnd){
+        const listStart = state.find(list => droppableIdStart === list.id);
+
+        const card = listStart.cards.splice(droppableIndexStart, 1);
+
+        const listEnd = state.find(list => droppableIdEnd === list.id);
+
+        listEnd.cards.splice(droppableIndexEnd, 0, ...card);
       }
 
       return newState;

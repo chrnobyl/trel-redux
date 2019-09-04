@@ -18,13 +18,13 @@ const ActionButtonContainer = styled.div`
   height: 36px;
   width: 272px;
   padding-left: 10px;
-`
+`;
 
 const ButtonGroupContainer = styled.div`
   margin-top: 8px;
   display: flex;
   align-items: center;
-`
+`;
 
 class ActionButton extends Component {
   state = {
@@ -74,8 +74,6 @@ class ActionButton extends Component {
   }
 
   renderForm = () => {
-    const { list } = this.props;
-
     const placeholder = "Enter a title for this card...";
 
     const buttonTitle = "Add Card";
